@@ -1,0 +1,10 @@
+# template for the Intel fortran compiler
+# typical use with mkmf
+# mkmf -t template.ifc -c"-Duse_libMPI -Duse_netCDF" path_names /usr/local/include
+FC = /nasa/intel/Compiler/2016.2.181/compilers_and_libraries_2016.2.181/linux/bin/intel64/ifort
+LD = /nasa/intel/Compiler/2016.2.181/compilers_and_libraries_2016.2.181/linux/bin/intel64/ifort
+FFLAGS  = -convert big_endian -safe_cray_ptr -ftz -i4 -r8 -fpp -O2 -I$(fms_home)/bin/nc_inc -I/nasa/intel/Compiler/2016.2.181/include -D__IFC
+# LDFLAGS = -L$(fms_home)/bin/nc_lib -lnetcdf -L/nasa/sgi/mpt/2.12r26/lib -lmpi -lmpigf -lmpigi -lpthread -lrt
+LDFLAGS = -L$(fms_home)/bin/nc_lib -lnetcdf -L/nasa/sgi/mpt/2.12r26/lib -lmpi -lpthread -lrt
+CFLAGS  = -I$(fms_home)/bin/nc_inc -I/nasa/sgi/mpt/2.12r26/lib -D__IFC 
+    
