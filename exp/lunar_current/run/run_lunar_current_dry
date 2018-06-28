@@ -37,7 +37,7 @@ set days            = 90                             # length of integration
 set runs_per_script = 4                             # number of runs within this script
 set start_analysis  = 1                              # number of script run at which to start analysis (after spin-up)
 set num_script_runs = 1                              # how many times to resubmit script to queue
-set days_per_segment = ${days}                       # days per segment of analysis (for seasonally-varying analysis)
+set days_per_segment = 1     #${days}                       # days per segment of analysis (for seasonally-varying analysis)
 
 @ num_segments       = ${days} / ${days_per_segment} # number of analysis segments
 echo num_segments    = $num_segments
@@ -208,7 +208,7 @@ while ($irun <= $runs_per_script)
          current_time = 0,
          override = .true.,
          days   = $days,
-         dt_atmos = 600 /
+         dt_atmos = 180 /
 EOF
     else
       cat > input.nml <<EOF
@@ -326,7 +326,7 @@ EOF
         annual_mean                  =.false.,
         fixed_day                    =.false.,
         fixed_day_value              = 90.0,
-        solar_constant               = 1030,    # FYS=0.76 at 3.5 Ga. S0 @ 3.5 Ga = 1360*0.76 ~= 1030
+        solar_constant               = 1360,    # FYS=0.76 at 3.5 Ga. S0 @ 3.5 Ga = 1360*0.76 ~= 1030
         lw_tau_exponent              = 4.0,
         sw_tau_exponent              = 2.0,
         lw_tau0_pole                 = 1.8,
