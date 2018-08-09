@@ -1,0 +1,12 @@
+# template for the Intel fortran compiler
+# typical use with mkmf
+# mkmf -t template.ifc -c"-Duse_libMPI -Duse_netCDF" path_names /usr/local/include
+FC = gfortran
+LD = gfortran
+#FFLAGS = -convert big_endian -safe_cray_ptr -ftz -i4 -r8 -fpp -O2 -I$(fms_home)/bin/nc_inc -I/opt/mpich-mx-intel11/include -D__IFC
+FFLAGS = -ffree-line-length-none -save-temps -Wextra -Wall -fbacktrace -pedantic -O2 -finline-functions -funswitch-loops -fpredictive-commoning -fgcse-after-reload -ftree-slp-vectorize -fvect-cost-model -ftree-partial-pre -fipa-cp-clone -ffpe-trap=zero,invalid -mtune=native -march=native -fcray-pointer -fdefault-real-8 -fdefault-double-8 -DET_atm -DTIMING -DSPMD -Duse_libMPI -Duse_netCDF -D__GNU
+#LDFLAGS = -L$(fms_home)/bin/nc_lib -lnetcdf -L/opt/mpich-mx-intel11/lib -lmpich -L/opt/mx2g/lib64 -lmyriexpress
+LDFLAGS = -v
+#CFLAGS = -I$(fms_home)/bin/nc_inc -I/opt/mpich-mx-intel11/include -D__IFC
+CFLAGS = -Wextra -Wall -pedantic -O3 -DET_atm -DTIMING -DSPMD -Duse_libMPI -Duse_netCDF -D__GNU 
+# ian: note that run_test appends definition of fms_home to end of template.
